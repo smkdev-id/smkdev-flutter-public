@@ -1,0 +1,6 @@
+[submodule "imgrec_mobilenet"]
+	path = imgrec_mobilenet
+	url = git@github.com:smkdev-id/imgrec_mobilenet.git
+[submodule "flushop"]
+	path = flushop
+	url = git@github.com:smkdev-id/flushop.git
