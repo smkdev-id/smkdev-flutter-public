@@ -127,20 +127,20 @@ if [ -f "/etc/os-release" ]; then
     install_extra_packages
   fi
 
-  # Install Flutter based on condition
-  if [[ -z "$INSTALL_FLUTTER" ]]; then
-    read -p "Do you want to install Flutter? [Y/n]: " -n 1 -r
-    echo ""
-    if [[ $REPLY =~ ^[Yy]$ ]]; then
-      INSTALL_FLUTTER="yes"
-    fi
-  fi
-
-  if [[ "$INSTALL_FLUTTER" == "yes" ]]; then
-    install_flutter_lts
-  fi
-
 else
   echo "No /etc/os-release in the system. Make sure you're running on Ubuntu, or similar."
   exit 1
+fi
+
+# Install Flutter based on condition
+if [[ -z "$INSTALL_FLUTTER" ]]; then
+  read -p "Do you want to install Flutter? [Y/n]: " -n 1 -r
+  echo ""
+  if [[ $REPLY =~ ^[Yy]$ ]]; then
+    INSTALL_FLUTTER="yes"
+  fi
+fi
+
+if [[ "$INSTALL_FLUTTER" == "yes" ]]; then
+  install_flutter_lts
 fi
