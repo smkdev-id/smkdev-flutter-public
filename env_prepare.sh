@@ -77,28 +77,6 @@ function install_ubuntu_focal_requirements() {
 }
 
 # Download and Install Flutter lts versions
-
-Here is the updated Bash script with the necessary corrections to address the "Scheme missing" error and ensure proper functionality:
-
-bash
-Copy code
-#!/bin/bash
-
-SUDO=""
-VERSION="3.22.2"
-FILE_URL="https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_$VERSION-stable.tar.xz"
-DEST_DIR="$HOME/Downloads"
-FILE_NAME="$(basename "$FILE_URL")"
-
-# Use sudo if not root
-if [[ ! $(id -u) -eq 0 ]]; then
-  if [[ -z $(which sudo) ]]; then
-    echo "Please install sudo or run as root"
-    exit 1
-  fi
-  SUDO="sudo"
-fi
-
 function install_flutter_lts(){
   $SUDO wget -O "$DEST_DIR/$FILE_NAME" "$FILE_URL"
   $SUDO tar -xf "$DEST_DIR/$FILE_NAME" -C /usr/local/
@@ -107,7 +85,6 @@ function install_flutter_lts(){
     echo 'export PATH="/usr/local/flutter/bin:$PATH"' >> ~/.bashrc
   fi
   source ~/.bashrc
-
   rm -rf "$DEST_DIR/$FILE_NAME"
 
   # Check if Flutter is properly installed
