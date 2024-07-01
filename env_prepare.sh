@@ -3,7 +3,7 @@ set -e
 
 SUDO=""
 VERSION="3.22.2"
-FILE_URL="wget https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_$VERSION-stable.tar.xz"
+FILE_URL="https://storage.googleapis.com/flutter_infra_release/releases/stable/linux/flutter_linux_$VERSION-stable.tar.xz"
 DEST_DIR="$HOME"
 FILE_NAME="$(basename "$FILE_URL")"
 
