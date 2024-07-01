@@ -78,14 +78,14 @@ function install_ubuntu_focal_requirements() {
 
 # Download and Install Flutter lts versions
 function install_flutter_lts(){
-  $SUDO wget -O "$DEST_DIR/$FILE_NAME" "$FILE_URL"
-  $SUDO tar -xf "$DEST_DIR/$FILE_NAME" -C /usr/local/
+  wget -O "$DEST_DIR/$FILE_NAME" "$FILE_URL"
+  tar -xf "$DEST_DIR/$FILE_NAME" -C "$DEST_DIR"
 
-  if ! grep -q 'export PATH="/usr/local/flutter/bin:$PATH"' ~/.bashrc; then
-    echo 'export PATH="/usr/local/flutter/bin:$PATH"' >> ~/.bashrc
+  if ! grep -q 'export PATH="$HOME/flutter/bin:$PATH"' ~/.bashrc; then
+    echo 'export PATH="$HOME/flutter/bin:$PATH"' >> ~/.bashrc
   fi
   source ~/.bashrc
-  rm -rf "$DEST_DIR/$FILE_NAME"
+  rm -f "$DEST_DIR/$FILE_NAME"
 
   # Check if Flutter is properly installed
   flutter doctor
@@ -126,7 +126,6 @@ if [ -f "/etc/os-release" ]; then
   if [[ "$INSTALL_EXTRA_PACKAGES" == "yes" ]]; then
     install_extra_packages
   fi
-
 else
   echo "No /etc/os-release in the system. Make sure you're running on Ubuntu, or similar."
   exit 1
